@@ -13,13 +13,4 @@ addons:
     access_key: "adc0c0cf-221b-46f1-81b9-a4429b722c2e"
 env:
   matrix:
-    - BROWSER=mac-chrome-latest
-    - BROWSER=mac-firefox-latest
-    - BROWSER=mac-safari-latest
-    - BROWSER=windows-chrome-latest
-    - BROWSER=windows-firefox-latest
-    - BROWSER=windows-edge-latest
-    - BROWSER=windows-ie-latest
-    - BROWSER=linux-chrome-latest
-    - BROWSER=linux-firefox-latest
-    - BROWSER=android-latest
+    - BROWSER=ios-latest
