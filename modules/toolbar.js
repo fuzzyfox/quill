@@ -10,11 +10,13 @@ let debug = logger('quill:toolbar');
 class Toolbar extends Module {
   constructor(quill, options) {
     super(quill, options);
-    if (Array.isArray(this.options.container)) {
-      let container = document.createElement('div');
-      addControls(container, this.options.container);
-      quill.container.parentNode.insertBefore(container, quill.container);
-      this.container = container;
+    if (!this.options.container && this.options.container !== false) {
+      this.container = document.createElement('div');
+      quill.container.parentNode.insertBefore(this.container, quill.container);
+    } else if (Array.isArray(this.options.container)) {
+      this.container = document.createElement('div');
+      quill.container.parentNode.insertBefore(this.container, quill.container);
+      this.options.controls = this.options.container
     } else if (typeof this.options.container === 'string') {
       this.container = document.querySelector(this.options.container);
     } else {
@@ -24,6 +26,9 @@ class Toolbar extends Module {
       return debug.error('Container required for toolbar', this.options);
     }
     this.container.classList.add('ql-toolbar');
+    if (!this.container.children.length) {
+      addControls(this.container, this.options.controls || []);
+    }
     this.controls = [];
     this.handlers = {};
     Object.keys(this.options.handlers).forEach((format) => {

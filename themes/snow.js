@@ -15,8 +15,8 @@ const TOOLBAR_CONFIG = [
 
 class SnowTheme extends BaseTheme {
   constructor(quill, options) {
-    if (options.modules.toolbar != null && options.modules.toolbar.container == null) {
-      options.modules.toolbar.container = TOOLBAR_CONFIG;
+    if (options.modules.toolbar != null && !options.modules.toolbar.controls) {
+      options.modules.toolbar.controls = TOOLBAR_CONFIG;
     }
     super(quill, options);
     this.quill.container.classList.add('ql-snow');
